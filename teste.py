@@ -279,15 +279,15 @@ while x == 0:
                 #printar informações do produto a ser consultado no BD
             elif opcao_produto == 1:
                 print("Cadastre o novo produto.")
-                id_produto = int(input("Digite a ID do produto:"))
-                id_fornecedor = int(input("ID produto: "))
+                id_produto = int(input("Digite a ID do produto: "))
+                id_fornecedor = int(input("ID Fornecedor: "))
                 nome_produto = input("Nome do produto: ")
                 valor_produto = float(input("Valor do produto: "))
                 descricao_produto =str(input("Descrição do produto: "))
                 qtde_produto = int(input("Quantidade de produtos disponiveis: "))
                 while id_produto in lista_produto:
                     print("ID indisponivel, esse ID está cadastrado no banco de dados da empresa.")
-                    id_produto=int(input("ID Produto: "))
+                    id_produto=int(input("Digite a ID do Produto: "))
                 else:
                     lista_produto.append(id_produto)
                     print("ID disponivel. Produto cadastrado com sucesso!")
@@ -297,14 +297,15 @@ while x == 0:
             opcao_vendas = int(input("Seção de vendas\n1. Nova venda\n2. Consultar vendas anteriores\nR:"))
         if opcao_vendas == 1:
             print("Cadastre uma nova venda.")
-            id_vendas = print("ID:")
-            id_cliente = int(input("Digite a Identificação do cliente:\n"))
-            id_produto = int(input("Digite a Identificação do produto:\n"))
-            vendas_qtd = int(input("Digite a quantidade do produto:\n"))
-            vendas_preco_unit = float(input("Valor do produto:\n"))
-            vendas_total = print("Total de", vendas_qtd, "por R$", vendas_preco_unit, "valor total de R$",(vendas_qtd * vendas_preco_unit))
+            id_vendas = print("ID da venda:")
+            id_cliente = int(input("Digite a ID do cliente: "))
+            id_produto = int(input("Digite a ID do produto: "))
+            vendas_qtd = int(input("Digite a quantidade de produtos para venda: "))
+            vendas_preco_unit = float(input("Digite o valor do produto:"))
+            vendas_total = print("Total de", vendas_qtd, "por R$", vendas_preco_unit, "valor total da venda R$",(vendas_qtd * vendas_preco_unit))
         elif opcao_vendas == 2:
             print("Consulte a venda desejada:")
+            id_vendas=input("Informe o ID da venda para ser consultado: ")
         while confirma > 2 or confirma < 1:
             print("Opção inválida. Digite uma opção válida.")
             confirma = int(input("Você acessou: VENDAS\nEstá correto? 1. Sim, continuar ou 2.Voltar ao Menu\n"))
