@@ -1,3 +1,16 @@
+import pyodbc
+import pandas as pd
+
+
+dados_conexao = (
+    "driver={sql server};"
+    "server=DESKTOP-5H0Q5EJ\sqlexpress;"
+    "database=projeto;")
+
+conexao = pyodbc.connect(dados_conexao)
+print("conexão bem sucedida")
+
+cursor = conexao.cursor()
 
 
 def leiaint(msg):
@@ -33,6 +46,12 @@ def leiafloat(msg):
             return f
 
 
+cosql = f"select * from usuario"
+cursor = conexao.cursor()
+cursor.execute(cosql)
+linhas = cursor.fetchall()
+log=linhas[0][0]
+sen=linhas[0][1]
 
 
 
@@ -49,12 +68,34 @@ acesso =leiaint("\033[35mDigite a opção desejada:\n1-Acessar conta existente\n
 if acesso == 1:
     usuario = leiastr("Usuário: ")
     senha = leiaint("Senha: ")
-    # realizar consulta no banco de dados para confirmar acesso
+    if usuario == log and senha == sen:
+        print("seja bem vindo")
+    else:
+        while True:
+            usuario != log and senha != sen
+            print('usuario nao cadastrado')
+            acesso = leiaint("\033[35mDigite a opção desejada:\n1-Acessar conta existente\n2-Cadastrar nova conta\nR:")
+
+            if acesso == 1:
+                usuario = leiastr("Usuário: ")
+                senha = leiaint("Senha: ")
+            if usuario == log and senha == sen:
+                print("seja bem vindo")
+                break
+            continue
+
+
 if acesso == 2:
     cadastro_user =leiastr("Insira um nome de usuário: ")
     senha1 = leiaint("Insira sua senha: ")
     senha2 = leiaint("Insira a senha novamente: ")
     if senha1 == senha2:
+        cad = f"""INSERT INTO usuario(nome,senha)
+                    VALUES
+                        ('{cadastro_user}',{senha1})"""
+        cursor.execute(cad)
+        cursor.commit()
+
         print("Usuário cadastrado com sucesso!")
         usuario = cadastro_user
         lista_usuario.append(usuario)
@@ -100,14 +141,20 @@ while x == 0:
         if confirma == 1:
             opcao_clientes = leiaint("Seção de clientes\n1. Novo cliente\n2. Consultar clientes cadastrados\nR:")
             if opcao_clientes == 2:
-                print("Consulta de clientes cadastrados.")
-                id_cliente=leiaint("Informe o ID do cliente para ser consultado: ")
-                #printar informações do cliente a ser consultado no BD
+                
+                tc=pd.read_sql(f"select * from cliente",conexao)
+                print(tc)
             if opcao_clientes == 1:
                 print("Cadastre o novo cliente.")
-                id_cliente = leiaint("ID Cliente: ")
+                id_cliente=leiaint("digite o codigo")
                 nome = leiastr("Nome: ")
-                telefone = leiaint("Telefone: ")
+                telefone = leiastr("Telefone: ")
+                tamfone= len(telefone)
+                while tamfone != 11:
+                    print("telefone tem que conter 11 digitos")
+                    telefone = leiastr("Telefone: ")
+                    tamfone = len(telefone)
+
                 cpf = leiastr("CPF: ")
                 tamanho = len(cpf)
                 while tamanho != 11:
@@ -121,6 +168,11 @@ while x == 0:
                     cpf = leiastr("Insira seu CPF aqui, apenas numeros: ")
                     tamanho = len(cpf)
                 confirma = leiaint("Está correto? 1.Sim ou 2.Não\nR:")
+                cad_cliente = f"""INSERT INTO cliente(id_cliente,nome_cliente,telefone,cpf)
+                    VALUES
+                        ('{id_cliente}','{nome}','{telefone}','{cpf}')"""
+                cursor.execute(cad_cliente)
+                cursor.commit()
                 print("Cliente cadastrado com sucesso.")
 
                 if confirma == 1:
@@ -141,6 +193,7 @@ while x == 0:
                     else:
                         print("CPF disponivel")
                         lista_cpf.append(cpf)
+                        print("Usuario NÂO cadastrado.")
                 while confirma == 2:
                     print("Ok, insira o CPF novamente: ")
                     cpf = leiastr("Insira o CPF aqui: ")
