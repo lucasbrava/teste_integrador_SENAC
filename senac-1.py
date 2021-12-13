@@ -18,7 +18,7 @@ def leiaint(msg):
         try:
             n=int(input(msg))
         except (ValueError,TypeError):
-            print('\033[35mERRO:Opção invalida por favo digite uma opção valida.\033[m ')
+            print('\033[35mERRO:Opção invalida, digite uma opção valida.\033[m ')
             continue
         else:
             return n
@@ -29,7 +29,7 @@ def leiastr(msg):
         try:
             s=str(input(msg))
         except (ValueError,TypeError):
-            print('\033[35mERRO:Opção invalida por favo digite uma opção valida.\033[m ')
+            print('\033[35mERRO:Opção invalida, digite uma opção valida.\033[m ')
             continue
         else:
             return s
