@@ -132,7 +132,7 @@ while acesso > 2 or acesso < 1:
 print("Bem vindo, ", usuario)
 x = 0
 while x == 0:
-    menu = leiaint("O que deseja consultar?\n1-CLIENTES\n2-ESTOQUE\n3-FORNECEDORES\n4-PRODUTOS\n5-VENDAS\nR:")
+    menu = leiaint("O que deseja consultar?\n1-CLIENTES\n2-ESTOQUE\n3-FORNECEDORES\n4-PRODUTOS\n5-VENDAS\n6-FINALIZAR E SAIR\nR:")
     while menu>5 or menu<1:
         print("Você escolheu retornar ao Menu Inicial ou digitou uma opção inválida.")
         menu = leiaint("O que deseja consultar?\n1-CLIENTES\n2-ESTOQUE\n3-FORNECEDORES\n4-PRODUTOS\n5-VENDAS\nR:")
@@ -398,3 +398,6 @@ while x == 0:
                 print("Cadastre uma nova venda: ")
             if opcao_vendas == 2:
                 print("Consulte a venda desejada: ")
+        if menu == 6:
+            print("LFM Boutique agradece sua colaboração.")
+            break
