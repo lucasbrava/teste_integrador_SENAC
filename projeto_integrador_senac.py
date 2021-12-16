@@ -6,10 +6,14 @@ dados_conexao = (
     "server=DESKTOP-5H0Q5EJ\sqlexpress;"
     "database=projeto;")
 
-conexao = pyodbc.connect(dados_conexao)
-print("Conexão iniciada")
-
-cursor = conexao.cursor()
+conexao = mysql.connector.connect(host='localhost',database='test',user='senac',password='123456')
+if conexao.is_connected():
+    db_info = conexao.get_server_info()
+    print("Conectado ao servidor MySQL versão ",db_info)
+    cursor = conexao.cursor()
+    cursor.execute("select database();")
+    linha = cursor.fetchone()
+    print("Conectado ao banco de dados ",linha)
 
 
 def leiaint(msg):
@@ -395,4 +399,8 @@ while x == 0:
                 
     if menu == 6:
         print("Software finalizado.")
+        if conexao.is_connected():
+        cursor.close()
+        conexao.close()
+        print("Conexão ao MySQL foi encerrada")
         brake
