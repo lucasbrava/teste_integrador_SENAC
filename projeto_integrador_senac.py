@@ -132,7 +132,7 @@ while acesso > 2 or acesso < 1:
 print("\033[34mBem vindo, \033[m", usuario)
 x = 0
 while x == 0:
-    menu = leiaint("\033[35mO que deseja consultar?\n1-CLIENTES\n2-ESTOQUE\n3-FORNECEDORES\n4-PRODUTOS\n5-VENDAS\6-FINALIZAR E SAIR\nR:\033[m")
+    menu = leiaint("\033[35mO que deseja consultar?\n1-CLIENTES\n2-ESTOQUE\n3-FORNECEDORES\n4-PRODUTOS\n5-VENDAS\n6-FINALIZAR E SAIR\nR:\033[m")
     while menu > 6 or menu < 1:
         print("Você escolheu retornar ao Menu Inicial ou digitou uma opção inválida.")
         menu = leiaint("\033[34mO que deseja consultar?\n1-CLIENTES\n2-ESTOQUE\n3-FORNECEDORES\n4-PRODUTOS\n5-VENDAS\n6-FINALIZAR E SAIR\nR:\033[m")
