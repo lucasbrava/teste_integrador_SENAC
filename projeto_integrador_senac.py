@@ -67,21 +67,21 @@ lista_vendas = []
 
 acesso = leiaint("\033[35mDigite a opção desejada:\n1-Acessar conta existente\n2-Cadastrar nova conta\nR:\033[m")
 if acesso == 1:
+    from getpass import getpass
     usuario = leiastr("Usuário: ")
-    senha = leiaint("Senha: ")
+    senha = getpass("Senha: ")
     if usuario == log and senha == sen:
-        print("seja bem vindo")
     else:
         while True:
             usuario != log and senha != sen
-            print('usuario nao cadastrado')
+            print('Usuario não cadastrado')
             acesso = leiaint("\033[35mDigite a opção desejada:\n1-Acessar conta existente\n2-Cadastrar nova conta\nR:\033[m")
 
             if acesso == 1:
+                from getpass import getpass
                 usuario = leiastr("Usuário: ")
-                senha = leiaint("Senha: ")
+                senha = getpass("Senha: ")
             if usuario == log and senha == sen:
-                print("seja bem vindo")
                 break
             continue
 
@@ -111,8 +111,9 @@ while acesso > 2 or acesso < 1:
     print("Opção inválida. Digite uma opção válida.")
     acesso = leiaint("\033[35mDigite a opção desejada:\n1-Acessar conta existente\n2-Cadastrar nova conta\nR:\033[m")
     if acesso == 1:
+        from getpass import getpass
         usuario = leiastr("Usuário: ")
-        senha = leiaint("Senha: ")
+        senha = getpass("Senha: ")
     elif acesso == 2:
         cadastro_user = leiastr("Insira um nome de usuário: ")
         senha1 = leiaint("Insira sua senha: ")
@@ -171,6 +172,8 @@ while x == 0:
                             print("\033[31mErro! Numero de caracteres invalidos. Digite novamente seu CPF: \033[m")
                             cpf = leiastr("\033[33mInsira seu CPF aqui, apenas numeros: \033[m")
                             tamanho = len(cpf)
+                            
+                            
                             while tamanho != 11:
                                 print("\033[31mErro! Numero de caracteres invalidos. Digite novamente seu CPF: \033[m")
                                 cpf = leiastr("\033[33mInsira seu CPF aqui, apenas numeros: \033[m")
@@ -403,4 +406,4 @@ while x == 0:
         cursor.close()
         conexao.close()
         print("Conexão ao MySQL foi encerrada")
-        brake
+        break
